@@ -1,10 +1,44 @@
 // const , let, var difference
 
+// var name = "Bob";
+
+// let name = 'Bob'
+
+// const name = "Bob"
+
+// let name = "Bob";
+// const age = 45;
+// const lastName;
+// let status;
+
+// var a = 5;
+
+// var a = 10;
+
+// console.log("a", a);
+
+// let b = 5;
+
+// let b = 10;
+
+// console.log("b", b);
+
 // const a = 5;
 // const b = "5";
 
-// console.log(a == b); // true
+// let a = 5;
+
+// console.log("a", a++); // 5
+
+// console.log("a", (a = a + 1)); // 6
+
+// console.log("a", a); // 6
+// console.log("a", ++a); // 6
+
+// console.log(a == b); // 5 == 5 // true
 // console.log(a === b); // false
+
+// console.log("parsInt", Number.parseInt("q24.5"));
 
 // console.log("яблоки", apples);
 // console.log("виноград", grapes);
@@ -13,15 +47,14 @@
 
 // const apples = 47;
 // const grapes = 135;
-// const total = apples + grapes;
-// console.log(total);
-// const diff = apples - grapes;
-// console.log(diff);
+// const result = apples + grapes;
+// console.log("result", result);
+// console.log("apples + grapes", apples + grapes);
 
 // Замени выражение переопределения комбинированным оператором `+=`.
 
 // let students = 100;
-// // students = students + 50;
+// students = students + 50;
 // students += 50;
 // console.log(students);
 
@@ -35,7 +68,18 @@
 // переменной `value`. Используй методы `Math.floor()`, `Math.ceil()` и
 // `Math.round()`. Проверь что будет в консоли при значениях `27.3` и `27.9`.
 
-// const value = 27.5;
+// const value = 64;
+// const result = Math.sqrt(value);
+// console.log("result", result);
+
+// console.log("floor", Math.floor(25.5));
+// console.log(Math.ceil(25.0000001));
+// console.log("first", Math.round(0.5));
+
+// console.log("result", (25.545).toFixed(2));
+
+// console.log("result", 0.1 + 0.2);
+
 // console.log("floor", Math.floor(value));
 // console.log("ceil", Math.ceil(value));
 // console.log("round", Math.round(value));
@@ -51,6 +95,10 @@
 // const repairBots = 150;
 // const defenceBots = 50;
 
+// const result = `${companyName} has ${repairBots} and ${defenceBots}`;
+
+// console.log(result);
+
 // const message = `${companyName} has ${repairBots + defenceBots} bots in stock`;
 // const userName = "Bob";
 // const budget = 1500000;
@@ -63,7 +111,9 @@
 
 // console.log(5 > 4);
 
-// console.log(10 >= '7');
+// console.log(10 >= "7qqqq");
+// // 1) '7qqqq' >= NaN
+// // 2) 10 >= NaN
 
 // console.log('2' > '12');
 
@@ -76,37 +126,93 @@
 
 // console.log('6' === 6);
 
-// console.log('false' === false);
+// console.log("false" === false);
 
 // console.log(1 == true); // true
 
 // console.log( 1 == 1)//
 
-// console.log(1 === true); // false
+// console.log(1 === true);
 
-// console.log(1 === 1); // true
+// console.log(1 === 1);
 
 // console.log('0' == false);
+// 1 ) Number('0') = 0
+// 2) Number(false) = 0
+// 3) 0 == 0
+
+// Number(true);
+
+// Boolean(12)
 
 // console.log('0' === false);
 
 // console.log('Papaya' < 'papaya');
 
 // console.log("Papaya" === "papaya");
-
 // console.log(undefined == null);
 
 // console.log(undefined === null);
 
+// const result = typeof 12;
+
+// console.log("result", result);
+
+// console.log(typeof NaN);
+// number;
+// string;
+// null;
+// undefined;
+// object;
+// Symbol;
+// true / false;
 // Каким будет результат выражений?
 
+// 1) Есть ли отпуск
+// 2) Купил билет
+// 3) Успел на поезд
+
+//  Есть ли отпуск И Купил билет И Успел на поезд = Едим отдихать
+
+// const vacation = true;
+// const ticket = true;
+// const train = true
+
+// console.log(vacation && ticket && train);
+
+// const login = prompt("Enter login");
+// const password = prompt("Enter password");
+
+// const validLogin = "user";
+// const validPassword = "1111";
+
+// login === validLogin && password === validPassword;
+
 // console.log(true && 3);
+
+// if (true && 3) {
+
+// }
 
 // console.log(false && 3);
 
 // console.log(true && 4 && 'kiwi');
 
 // console.log(true && 0 && 'kiwi');
+
+// 1) Нужно купить билет
+// 2) Успеть на самалет
+// 3) Нужен сертефикат
+
+// Результат - ответ да от таможни
+
+// const ticket = 2;
+// const plane = true;
+// const paper = -245;
+
+// console.log(ticket && plane && paper);
+
+///////////////////////////////////////// lesson 1 end
 
 // console.log(true || 3);
 
@@ -151,7 +257,6 @@
 // - 70 покажет 01:10
 // - 450 покажет 07:30
 // - 1441 покажет 24:01
-
 // const totalMinutes = 70;
 
 // const hours = Math.floor(totalMinutes / 60);
