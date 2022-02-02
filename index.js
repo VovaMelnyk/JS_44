@@ -612,19 +612,8 @@ const secondName = null;
 
 
 
-Копютер => создали папку с файлами => отправка на github
 
 
 
-github
 
 
-1) git clone - копируем новые файли с сайта на копютер
-2) git branch "branchName" - создать ветку
-3) git checkout "branchName" - переходим в ветку
-4) git checkout - b "branchName" - создает и переходит в ветку
-5) git add. - сохранить все изменения во всех файлах
-6) git commit - m "commit message" - подписывает сохраненные изменения
-7) git push - отправляем наш код на github
-8) git pull - получаем последние обновления кода в ветке
-9) git status - показывает статус проекта
