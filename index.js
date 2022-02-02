@@ -168,6 +168,42 @@
 // true / false;
 // Каким будет результат выражений?
 
+// if ("poly" || "Mango") {
+// }
+
+// console.log("poly" || "Mango");
+// // true
+
+// 0 || null; // null
+
+// if ("poly" && "Mango") {
+// }
+
+// 1) if ("Mango") {
+
+// }
+
+// 2) if (true) {
+
+// }
+
+// "poly" || "Mango"; // false
+// A && (B || C) && (D || E);
+// console.log(null && "false" && "mango");
+// console.log(null || "false" || "mango");
+// console.log("false" && "Mango" || null);
+// 1) console.log("false" && "Mango"); // "Mango"
+// 2) console.log('Mango' || null);
+// console.log("Mango" && null || false);
+
+// 1) "Mango" && null // null
+// 2) console.log(null || false);
+
+// const q = a && b && c;
+// const result = f && a1 && b1 && c1;
+
+// q || d || result || d || f;
+
 // 1) Есть ли отпуск
 // 2) Купил билет
 // 3) Успел на поезд
@@ -189,6 +225,33 @@
 // login === validLogin && password === validPassword;
 
 // console.log(true && 3);
+
+// const age = prompt("Enter your age");
+// const name = prompt("Enter your name");
+
+// if (age > 16 || name === "Bob") {
+//   console.log("Привет");
+// } else {
+//   console.log("Доступ запрещен");
+// }
+
+// if (!("Mango" || null)) { // false
+//   console.log(1);
+// } else {
+//     console.log(2);
+// }
+
+// const name = "Bob";
+// const result = Boolean(name);
+// const result2 = !!name;
+// // 1) !name => !true => false
+// // 2) !false => true
+// console.log(result2);
+// const age = 16;
+// const isPremium = true;
+// const result = age > 14;
+
+// age && isPremium && <button>Click me</button>
 
 // if (true && 3) {
 
@@ -223,12 +286,13 @@
 // console.log(null || " " || undefined);
 
 // console.log((1 && null && 2) > 0);
-
-// console.log(null > 0)
+// 1) null > 0
+// 2) 0 > 0
+// 3) false
 
 // console.log(null || (2 && 3) || 4);
-
-// console.log(null || 3 || 4);
+// 1) null || 3 || 4
+// 2) 3
 
 // console.log("ghbdsn!" && 25 && null);
 
@@ -245,6 +309,31 @@
 // противном случае должно присваиваться значение `defaultValue`. Проверь работу
 // скрипта для слепдующих значений переменной `incomingValue`: null, undefined, 0,
 // false. Используй оператор `??` (nullish coalescing operator).
+
+const name = "Bob";
+const secondName = null;
+
+// console.log(name === true);
+// console.log(Boolean(name) === true);
+
+// Если нам извесно имя пользователя - выводим фразу "Привет {имя}" иначе выводим фразу "Здравствуйте"
+
+// if (Boolean(name) === true) {
+// } else {
+// }
+
+// let message = "";
+
+// if (name) {
+//   message = `Привет ${name}`;
+// } else {
+//   message = "Здравствуйте";
+// }
+
+// let message = name ? `Привет ${name}` : "Здравствуйте";
+
+// const message = secondName ?? "Здравствуйте";
+// console.log("message", message);
 
 // const incomingValue = 5;
 // const defaultValue = 10;
@@ -270,7 +359,6 @@
 
 // toFixed
 
-
 // # Модуль 1. Занятие 2. Ветвления. Циклы
 
 // ## Example 1 - Ввод пользователя и ветвления
@@ -279,6 +367,14 @@
 // `"Какое официальное название JavaScript?"`. Если пользователь вводит
 // `ECMAScript`, то показывай alert со строкой `"Верно!"`, в противном случае -
 // `"Не знаете? ECMAScript!"`
+
+// const answer = prompt("Enter JS full name");
+
+// if (answer === "ECMAScript") {
+//   console.log("Верно!");
+// } else {
+//     console.log("Не знаете? ECMAScript!");
+// }
 
 // ## Example 2 - Отображение времени (if...else)
 
@@ -309,6 +405,36 @@
 // ```js
 // const userInput = prompt('Введите число');
 // ```
+
+// const userInput = Number(prompt("Введите число"));
+// const userInput = +prompt("Введите число");
+
+// if (userInput > 0) {
+//   console.log("Это положительное число");
+// } else if (userInput === 0) {
+//   console.log("Это ноль");
+// } else {
+//   console.log("Это отрицательное число");
+// }
+
+// switch (true) {
+//   case userInput > 0:
+//     console.log("Это положительное число");
+//     break;
+//   case userInput === 0:
+//     console.log("Это ноль");
+//     break;
+//   default:
+//     console.log("Это отрицательное число");
+//     break;
+// }
+
+// let message =
+//   userInput > 0
+//     ? "Это положительное число"
+//     : userInput === 0
+//     ? "Это ноль"
+//     : "Это отрицательное число";
 
 // ## Example 4 - Вложенные ветвления
 
@@ -433,3 +559,70 @@
 
 // - Если введён пароль `"Я админ"`, то вывести строку `"Здравствуйте!"`
 // - Иначе выводить строку `"Неверный пароль"`
+
+// 1) Нужно получить 5 цифер и найти их суму
+
+// let number = null;
+// let total = 0;
+
+// for (let i = 0; i < 5; i++) {
+//   number = Number(prompt("Enter your number"));
+//   total += number;
+// }
+
+// console.log(total);
+// let count = 0,
+//   number = null,
+//   total = 0;
+// let count = 0;
+// let number = null;
+// let total = 0;
+
+// while (count < 5) {
+//   number = Number(prompt("Enter your number"));
+//   total += number;
+//   count++;
+// }
+
+// let count = 5;
+// let number = null;
+// let total = 0;
+
+// do {
+//   number = Number(prompt("Enter your number"));
+//   total += number;
+//   count++;
+// } while (count < 5);
+
+// for (let i = 0; i > 5; i += 1) {}
+
+// do {
+
+// } while (condition);
+// ///////////////////////////
+
+// while (condition) {
+
+// }
+
+// for (let index = 0; index < array.length; index++) {
+//     const element = array[index];
+
+// }
+
+
+
+Копютер => создали папку с файлами => отправка на github
+
+
+
+github
+
+
+1) git clone - копируем новые файли с сайта на копютер
+2) git branch "branchName" - создать ветку
+3) git checkout "branchName" - переходим в ветку
+4) git checkout - b "branchName" - создает и переходит в ветку
+5) git add. - сохранить все изменения во всех файлах
+6) git commit - m "commit message" - подписывает сохраненные изменения
+7) git push - отправляем наш код на github
