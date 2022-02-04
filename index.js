@@ -612,6 +612,18 @@
 
 //////////////////////////////////////////////// end day 2
 
+// let counter = 0;
+
+// while (counter < 10) {
+//   console.log("counter: ", counter);
+//   counter += 1;
+// }
+// 1) counter = 0 => 0 < 10 => console.log("counter: ", counter); => 0 + 1 => counter = 1
+// 2) counter = 1 => 1 < 10 => console.log("counter: ", counter) => 1 + 1 => counter = 2
+// 3) counter = 2 => 2 < 10 => console.log("counter: ", counter) => 2 + 1 =< counter = 3
+// ........
+// 10) counter = 10 10 < 10
+
 // ## Task 1 if...else и логические операторы
 
 // Напиши скрипт который будет выводить в консоль браузера строку в зависимости от
@@ -626,6 +638,39 @@
 // ```js
 // const hours = 10;
 // ```
+
+// const hours = prompt("Enter number");
+
+// if (hours < 17) {
+//   console.log("Pending");
+// } else if (hours >= 17 && hours <= 24) {
+//   console.log("Expires");
+// } else {
+//   console.log("Overdue");
+// }
+
+// switch (true) {
+//   case hours < 17:
+//     console.log("Pending");
+//     break;
+//   case hours >= 17 && hours <= 24:
+//     console.log("Expires");
+//     break;
+//   default:
+//     console.log("Overdue");
+//     break;
+// }
+
+// function isNumberInRange(start, end, number) {
+//   const isInRange = start <= number && number <= end;
+//   const isInRange = number >= start && number <= end;
+
+//   console.log(isInRange);
+//   // Change this line
+
+//   return isInRange;
+// }
+// isNumberInRange(10, 30, 17);
 
 // ## Task 2 - Дедлайн сдачи проекта (if...else)
 
@@ -642,6 +687,33 @@
 // // Пиши код ниже этой строки
 // ```
 
+// const daysUntilDeadline = 5;
+
+// if (daysUntilDeadline === 0) {
+//   console.log("Сегодня");
+// } else if (daysUntilDeadline === 1) {
+//   console.log("Завтра");
+// } else if (daysUntilDeadline === 2) {
+//   console.log("Послезавтра");
+// } else {
+//   console.log("Дата в будущем");
+// }
+
+// switch (daysUntilDeadline) {
+//   case 0:
+//     console.log("Сегодня");
+//     break;
+//   case 1:
+//     console.log("Завтра");
+//     break;
+//   case 2:
+//     console.log("Послезавтра");
+//     break;
+//   default:
+//     console.log("Дата в будущем");
+//     break;
+// }
+
 // ## Task 3 - Дедлайн сдачи проекта (switch)
 
 // Выполни рефакторинг кода задачи номер 5 используя `switch`.
@@ -653,14 +725,80 @@
 // Task #4 - В переменной min лежит число от 0 до 59.
 // Определите в какую четверть часа попадает это число(в первую, вторую, третью или четвертую).
 
-// let min = 10;
+// let minutes = 14;
+
+// if (minutes >= 0 && minutes < 15) {
+//   console.log("Первая четверть");
+// } else if (minutes >= 15 && minutes < 30) {
+//   console.log("Вторая четверть");
+// } else if (minutes >= 30 && minutes < 45) {
+//   console.log("Третья четверть");
+// } else {
+//   console.log("Четвертая четверть");
+// }
 
 // Task #5 - Спросить в пользователя месяц рождения и показать какое это время года
 
-// let month = prompt ("Enter your month on birdth");
+// let month = prompt("Enter your month on birdth").toLowerCase();
+// const january = "января";
+
+// if (month === january || month === "декабрь" || month === "февраль") {
+//   console.log("Зима");
+// } else if (month === "март" || month === "апрель" || month === "май") {
+//   console.log("Весна");
+// } else if (month === "июнь" || month === "июль" || month === "август") {
+//   console.log("Лето");
+// } else if (month === "сентябрь" || month === "октябрь" || month === "ноябрь") {
+//   console.log("Осень");
+// } else {
+//   console.log("Вы вписали не правельный месяц");
+// }
 
 // Task #6 - Дана строка из 3-х цифр. Найдите сумму этих цифр.
 // То есть сложите как числа первый символ строки, второй и третий.
+
+// const string = prompt("Enter number");
+// let total = 0;
+
+// if (isNaN(string)) {
+//   console.log("Вы ввели не число");
+// } else if (string.length !== 3) {
+//   console.log("Вы ввели не 3-х значное число");
+// } else {
+//   // '123'
+//   for (let counter = 0; counter < string.length; counter++) {
+//     total += Number(string[counter]);
+//   }
+
+// console.log(isNaN("12b"));
+
+// if (!isNaN(string)) {
+//   // false => !false => true
+//   for (let counter = 0; counter < string.length; counter++) {
+//     total += Number(string[counter]);
+//   }
+// } else if (string.length !== 3) {
+//   console.log("Вы ввели не 3-х значное число");
+// } else {
+//   console.log("Вы ввели не число");
+// }
+
+// 1) i = 0 => 0 < 3 => i = 0 + 1
+// 2) i = 1 => 1 < 3 => i = 1 + 1
+// 3) i = 2 => 2 < 3 => i = 2 + 1
+// 4) i = 3 => 3 < 3 => цыкл остановился
+
+///////////////
+// 1) total = 0 => total = total + Number(string[0]) => total = 0 + 1 => total = 1
+// 2) total = 1 => total = total + Number(string[1]) => total = 1 + 2 => total = 3
+// 3) total = 3 => total = total + Number(string[2]) => total = 3 + 3 => total = 6
+
+// console.log("total", total);
+// let i = 0;
+// i++; // 0
+// // 1
+// ++i; // 1
+// // 1
 
 // ## Task #7  - Ввод пользователя и ветвления
 
@@ -699,7 +837,7 @@
 // 1) минимум 3 символа, - если символов меньше выводим сообщение "Пароль должен содержать минимум 3 символа"
 // 2) максимум 16 символов - если символов больше, выводим сообщение "Пароль должен содержать максимум 16 символов"
 
-// Task #15 - Написать программу которая спрашивает у пользователя почку и проверяет ее на валидность.
+// Task #15 - Написать программу которая спрашивает у пользователя почту и проверяет ее на валидность.
 // Правила валидации
 // 1) минимум 4 символа
 // 2) максимум 10 символов
@@ -707,7 +845,56 @@
 // 4) почта должна содержать символ .
 // Если почта не прошла хотябы одну проверку выводим сообщение "Почта не отвечает требованиям".
 
+// const email = prompt("Enter your email");
+
+// if (
+//   email.length < 4 ||
+//   email.length > 10 ||
+//   !email.includes("@") ||
+//   !email.includes(".")
+// ) {
+//   console.log("Почта не отвечает требованиям");
+// } else {
+//   console.log("Почта валидная");
+// }
+
+// if (
+//   email.length >= 4 &&
+//   email.length <= 10 &&
+//   email.includes("@") &&
+//   email.includes(".")
+// ) {
+//   console.log("Почта валидная");
+// } else {
+//   console.log("Почта не отвечает требованиям");
+// }
+
+// console.log("user@gmail.com".includes("@"));
+
 // Task #16 - Написать програму которая спращивает имя пользователя и всегда выводит его в формате Первая буква большая остальные маленькие
 // slice
 
+// const string = "heLLo"; // HeLLo , hEllo, HELLO, hello
+// 1) Приводим все в нижний регистр
+// 2) Первую букву делаем большой
+// 3) Обрезать строку и получить часть без первой буквы
+// 4) Обеденить первую букву и обрезаную часть
 
+// let lowerCase = string.toLowerCase();
+// const firstLetter = lowerCase[0].toUpperCase();
+// const cutString = lowerCase.slice(1);
+// const result = `${firstLetter}${cutString}`;
+
+// console.log(lowerCase);
+// console.log(firstLetter);
+// console.log(cutString);
+// console.log(result);
+
+// lowerCase[0].toUpperCase();
+// lowerCase[0] = lowerCase[0].toUpperCase();
+// console.log(lowerCase);
+
+// const result2 = string.toLowerCase().toLocaleUpperCase();
+// console.log(result2);
+
+// Hello
