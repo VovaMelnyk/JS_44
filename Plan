@@ -1,15 +1,5 @@
-0) Connect script to file
-1) How create variables let, const
-2) Console and debuger
-3) Basic types typeof
-4) == ===
-5) Math, Number
-6) Template string
-7) Convert to boolean, Number. String
-8) logical operators
-
-9) if else
-10) Ternar operators
-11) Switch case
-12) Scope
-13) loop
+1) arrays
+2) get elem in arrays
+3) for of
+4) get by value and get by link
+5) split, join, indexOf, includes, push, pop, splice, concat
