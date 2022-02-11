@@ -252,6 +252,26 @@
 
 /////////////////////////////////////////////// End lesson # 3
 
+// function add() {
+//   const argumentsArray = Array.from(arguments);
+//   let total = 0;
+//   for (const number of argumentsArray) {
+//     total += number;
+//   }
+//   return total;
+// }
+
+// console.log(add(1, 2));
+// console.log(add(4, 5, 7, 3, 2));
+
+// function moduleNameToUppercase(moduleName) {
+//   return moduleName.toUpperCase();
+// }
+
+// moduleNameToUppercase("Module 1"); // moduleName = "Module 1"
+// moduleNameToUppercase("Module 15"); // moduleName = "Module 15"
+// moduleNameToUppercase("Module 22"); // moduleName = "Module 22"
+
 // # Модуль 2. Занятие 4. Функции
 
 // ## Example 1 - Индекс массы тела
@@ -267,7 +287,25 @@
 // Индекс массы тела необходимо округлить до одной цифры после запятой;
 
 // ```js
-// const bmi = calcBMI('88,3', '1.75');
+
+// function calcBMI(weight, height) {
+//   return (
+//     Number.parseFloat(weight) / Math.pow(Number.parseFloat(height), 2)
+//   ).toFixed(1);
+// }
+
+// function calcBMI(weight, height) {
+//   const result = weight / Math.pow(height, 2);
+//   return result.toFixed(1);
+// }
+
+// function calcBMI(weight, height) {
+//   return (weight / (height * height)).toFixed(1);
+// }
+
+// const calcBMI = (weight, height) => (weight / (height * height)).toFixed(1);
+
+// const bmi = calcBMI("88,3", "1.75");
 // console.log(bmi); // 28.8
 // ```
 
@@ -275,10 +313,22 @@
 
 // Напиши функцию `min(a,b)`, которая возвращает меньшее из чисел `a` и `b`.
 
-// ```js
+// const min = function (a = 0, b = 0) {
+//   if (a > b) {
+//     return b;
+//   }
+//   return a;
+// };
+
+// // ```js
+
+// const variantA = Number(prompt("Enter number a"));
+// const variantB = Number(prompt("Enter number b"));
+
 // console.log(min(2, 5)); // 2
 // console.log(min(3, -1)); // -1
 // console.log(min(1, 1)); // 1
+// console.log(min(variantA, variantB));
 // ```
 
 // ## Example 3 - Площадь прямоугольника
@@ -288,9 +338,34 @@
 // строки. Значения гарантированно разделены пробелом.
 
 // ```js
-// function getRectArea(dimensions) {}
+// function getRectArea(dimensions) {
+//   const numbers = dimensions.split(" ");
 
-// console.log(getRectArea('8 11'));
+//   if (
+//     Number.isInteger(Number(numbers[0])) &&
+//     Number.isInteger(Number(numbers[1]))
+//   ) {
+//     return numbers[0] * numbers[1];
+//   }
+
+//   return "Вы передали дробные числа";
+// }
+
+// function getRectArea(dimensions) {
+//   const numbers = dimensions.split(" ");
+
+//   if (
+//     !Number.isInteger(Number(numbers[0])) ||
+//     !Number.isInteger(Number(numbers[1]))
+//   ) {
+//     return "Вы передали дробные числа";
+//   }
+//   return numbers[0] * numbers[1];
+// }
+
+// console.log(getRectArea("8 11"));
+// console.log(getRectArea("120 23"));
+
 // ```
 
 // ## Example 4 - Логирование элементов
@@ -304,10 +379,15 @@
 // будет выведено `1 - Mango`, а для индекса 2 выведет `3 - Ajax`.
 
 // ```js
-// function logItems(items) {}
+// function logItems(items) {
+//   for (let item of items) {
+//     const index = items.indexOf(item) + 1;
+//     console.log(index, item);
+//   }
+// }
 
-// logItems(['Mango', 'Poly', 'Ajax']);
-// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+// logItems(["Mango", "Poly", "Ajax"]);
+// logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
 // ```
 
 // ## Example 5 - Логирование контактов
@@ -333,7 +413,15 @@
 // массиве.
 
 // ```js
-// function findLargestNumber(numbers) {}
+// function findLargestNumber(numbers) {
+//   let max = numbers[0];
+//   for (let number of numbers) {
+//     if (max < number) {
+//       max = number;
+//     }
+//   }
+//   return max;
+// }
 
 // console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
 // console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
@@ -396,3 +484,57 @@
 // updateCourse('Express', 'NestJS');
 // console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
 // ```
+
+// function localize(lang = "en") {
+//   if (lang === "ru") {
+//     return "Привет";
+//   }
+//   if (lang === "uk") {
+//     return "Привiт";
+//   }
+//   if (lang === "en") {
+//     return "Hello";
+//   }
+// }
+
+// function localize(lang = "en") {
+//   if (lang === "ru") {
+//     return "Привет";
+//   }
+//   if (lang === "uk") {
+//     return "Привiт";
+//   }
+//   return "Hello";
+// }
+
+// console.log(localize("ru").toUpperCase());
+// console.log(localize("uk").toUpperCase());
+// console.log(localize().toUpperCase());
+
+// const add = function () { }; // 1
+
+// function add() {} // 2
+
+// const localize = (lang = "en") => {
+//   if (lang === "ru") {
+//     return "Привет";
+//   }
+//   if (lang === "uk") {
+//     return "Привiт";
+//   }
+//   if (lang === "en") {
+//     return "Hello";
+//   }
+// };
+
+// const add = (a, b) => a + b;
+// const add = (a, b) => {
+//   return a + b;
+// };
+
+// const numbers = [1, 3, 4, 6, 7];
+
+// const result = numbers.slice().pop().toFixed().toUpperCase();
+// console.log(result);
+
+// const result = numbers.concat([23, 45]).splice(0,1).length;
