@@ -16,11 +16,24 @@
 
 // ```js
 // const user = {
-//   name: 'Mango',
+//   name: "Mango",
 //   age: 20,
-//   hobby: 'html',
+//   hobby: "html",
 //   premium: true,
 // };
+
+// user.mood = "happy";
+// user.hobby = "skydiving";
+// user.premium = false;
+
+// const keys = Object.keys(user);
+
+// for (let key of keys) {
+//   console.log(`${key}: ${user[key]}`);
+// }
+// console.log(keys);
+
+// console.log(user);
 // ```
 
 // ## Example 2 - метод Object.values()
@@ -37,6 +50,19 @@
 //   Ann: 160,
 //   Pete: 130,
 // };
+
+// function calcSalary(salaries) {
+//   const values = Object.values(salaries);
+//   let total = 0;
+//   for (let value of values) {
+//     total += value;
+//   }
+//   return total;
+// }
+
+// console.log(calcSalary(salaries));
+// console.log(calcSalary({}));
+
 // ```
 
 // ## Example 3 - Массив объектов
@@ -68,13 +94,13 @@
 //  * Можно положить либо снять деньги со счета.
 //  */
 // const Transaction = {
-//   DEPOSIT: 'deposit',
-//   WITHDRAW: 'withdraw',
+//   WITHDRAW: "withdraw",
+//   DEPOSIT: "deposit",
 // };
 
-// /*
-//  * Каждая транзакция это объект со свойствами: id, type и amount
-//  */
+// // /*
+// //  * Каждая транзакция это объект со свойствами: id, type и amount
+// //  */
 
 // const account = {
 //   // Текущий баланс счета
@@ -87,7 +113,13 @@
 //    * Метод создает и возвращает объект транзакции.
 //    * Принимает сумму и тип транзакции.
 //    */
-//   createTransaction(amount, type) {},
+//   createTransaction(amount, type) {
+//     return {
+//       amount,
+//       type,
+//       id: this.transactions.length,
+//     };
+//   },
 
 //   /*
 //    * Метод отвечающий за добавление суммы к балансу.
@@ -95,7 +127,11 @@
 //    * Вызывает createTransaction для создания объекта транзакции
 //    * после чего добавляет его в историю транзакций
 //    */
-//   deposit(amount) {},
+//   deposit(amount) {
+//     const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
+//     this.transactions.push(transaction);
+//     this.balance += amount;
+//   },
 
 //   /*
 //    * Метод отвечающий за снятие суммы с баланса.
@@ -106,22 +142,142 @@
 //    * Если amount больше чем текущий баланс, выводи сообщение
 //    * о том, что снятие такой суммы не возможно, недостаточно средств.
 //    */
-//   withdraw(amount) {},
+//   withdraw(amount) {
+//     const transaction = this.createTransaction(amount, Transaction.WITHDRAW);
+//     this.transactions.push(transaction);
+//     this.balance -= amount;
+//   },
 
 //   /*
 //    * Метод возвращает текущий баланс
 //    */
-//   getBalance() {},
+//   getBalance() {
+//     // this = account
+//     return this.balance; // account.balance
+//   },
 
 //   /*
 //    * Метод ищет и возвращает объект транзации по id
 //    */
-//   getTransactionDetails(id) {},
+//   getTransactionDetails(id) {
+//     for (let transaction of this.transactions) {
+//       if (transaction.id === id) {
+//         return transaction;
+//       }
+//     }
+//   },
 
 //   /*
 //    * Метод возвращает количество средств
 //    * определенного типа транзакции из всей истории транзакций
 //    */
-//   getTransactionTotal(type) {},
+//   getTransactionTotal(type) {
+//     let total = 0;
+
+//     for (let transaction of this.transactions) {
+//       if (transaction.type === type) {
+//         total += transaction.amount;
+//       }
+//     }
+//     return total;
+//   },
 // };
-// ```
+// // ```
+
+// console.log(account.getBalance());
+// account.deposit(450);
+// account.deposit(50);
+// account.withdraw(100);
+// account.deposit(100);
+// account.withdraw(50);
+// console.log(account.getBalance());
+
+// console.log(account.getTransactionDetails(0));
+// console.log(account.getTransactionTotal(Transaction.DEPOSIT));
+// console.log(account.getTransactionTotal(Transaction.WITHDRAW));
+
+// console.log(account);
+
+// const string = "The brown fox jumps over lazy dog";
+
+// function findLongestWord(string) {
+//   const wordArray = string.split(" ");
+//   let result = wordArray[0];
+//   for (let word of wordArray) {
+//     if (word.length >= result.length) {
+//       result = word;
+//     }
+//   }
+//   return result;
+// }
+
+// console.log(findLongestWord(string));
+
+// const user = {
+//   name: "Bob",
+//   email: "user@gmail",
+//   //   info: {
+//   //     age: 23,
+//   //     gender: "male",
+//   //   },
+// };
+
+// console.log(user.info && user.info.age);
+// console.log(user.info?.age);
+
+// console.log(user && user.info && user.info.age);
+// console.log(user?.info?.age);
+
+// function getExtremeElements(array) {
+//   console.log(array);
+// }
+
+// getExtremeElements([1, 3, 5, 6, 8]);
+
+// function checkAge(age) {
+//   if (age >= 18) {
+//     // Change this line
+//     return "You are an adult"; // stop
+//   }
+//   return "You are a minor";
+// }
+
+// function checkAge(age) {
+//   if (age >= 18) {
+//     // Change this line
+//     return "You are an adult"; // stop
+//   } else {
+//     return "You are a minor";
+//   }
+// }
+
+// const user = {
+//   name: "Bob",
+//   age: 13,
+//   status: true,
+// };
+
+// for (let key in user) {
+//   if (user.hasOwnProperty(key)) {
+//     console.log(key);
+//   }
+// }
+
+// console.log(user);
+
+// const objKey = prompt("Enter key name");
+
+// function showValue(obj, keyName) {
+//   console.log(obj[keyName]);
+// }
+
+// showValue(user, objKey);
+
+// const key = prompt("Enter key name");
+// const value = prompt("enter value");
+
+// const user2 = {
+//   [key]: value,
+// };
+
+// console.log(user2);
