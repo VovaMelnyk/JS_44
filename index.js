@@ -282,7 +282,6 @@
 
 // console.log(user2);
 
-
 /////////////////////////////////////////////// lesson #6
 
 // # Модуль 3 Занятие 6. Деструктуризация и rest/spread
@@ -293,35 +292,35 @@
 // независимых аргументов.
 
 // ```js
-// function calcBMI(weight, height) {
-//   const numericWeight = Number(weight.replace(',', '.'));
-//   const numericHeight = Number(height.replace(',', '.'));
+// function calcBMI({ weight, height }) {
+//   const numericWeight = Number(weight.replace(",", "."));
+//   const numericHeight = Number(height.replace(",", "."));
 //   return Number((numericWeight / numericHeight ** 2).toFixed(1));
 // }
 
 // // Было
-// // console.log(calcBMI('88,3', '1.75'));
-// // console.log(calcBMI('68,3', '1.65'));
-// // console.log(calcBMI('118,3', '1.95'));
+// console.log(calcBMI('1.75', '88,3));
+// console.log(calcBMI('68,3', '1.65'));
+// console.log(calcBMI('118,3', '1.95'));
 
 // // Ожидается
 // console.log(
 //   calcBMI({
-//     weight: '88,3',
-//     height: '1.75',
-//   }),
+//     weight: "88,3",
+//     height: "1.75",
+//   })
 // );
 // console.log(
 //   calcBMI({
-//     weight: '68,3',
-//     height: '1.65',
-//   }),
+//     height: "1.65",
+//     weight: "68,3",
+//   })
 // );
 // console.log(
 //   calcBMI({
-//     weight: '118,3',
-//     height: '1.95',
-//   }),
+//     height: "1.95",
+//     weight: "118,3",
+//   })
 // );
 // ```
 
@@ -331,9 +330,18 @@
 // независимых аргументов.
 
 // ```js
-// function printContactsInfo(names, phones) {
-//   const nameList = names.split(',');
-//   const phoneList = phones.split(',');
+// function printContactsInfo({ names, phones }) {
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// }
+
+// function printContactsInfo(data) {
+//   const { names, phones } = data;
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
 //   for (let i = 0; i < nameList.length; i += 1) {
 //     console.log(`${nameList[i]}: ${phoneList[i]}`);
 //   }
@@ -347,8 +355,8 @@
 
 // // Ожидается
 // printContactsInfo({
-//   names: 'Jacob,William,Solomon,Artemis',
-//   phones: '89001234567,89001112233,890055566377,890055566300',
+//   names: "Jacob,William,Solomon,Artemis",
+//   phones: "89001234567,89001112233,890055566377,890055566300",
 // });
 // ```
 
@@ -358,22 +366,27 @@
 // независимых аргументов.
 
 // ```js
-// function getBotReport(companyName, repairBots, defenceBots) {
-//   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
+// function getBotReport({ companyName, bots: { repair, defence } }) {
+//   return `${companyName} has ${repair + defence} bots in stock`;
 // }
 
-// // Было
-// // console.log(getBotReport('Cyberdyne Systems', 150, 50));
+// function getBotReport({ companyName, bots }) {
+//   const { repair, defence } = bots;
+//   return `${companyName} has ${repair + defence} bots in stock`;
+// }
 
-// // Ожидается
+// // // Было
+// // // console.log(getBotReport('Cyberdyne Systems', 150, 50));
+
+// // // Ожидается
 // console.log(
 //   getBotReport({
-//     companyName: 'Cyberdyne Systems',
+//     companyName: "Cyberdyne Systems",
 //     bots: {
 //       repair: 150,
 //       defence: 50,
 //     },
-//   }),
+//   })
 // ); // "Cyberdyne Systems has 200 bots in stock"
 // ```
 
@@ -386,6 +399,8 @@
 // ```js
 // // Решение
 // function getStockReport({ companyName, stock }) {
+//   //   const { repairBots, defenceBots } = stock;
+//   //   const total = repairBots + defenceBots;
 //   let total = 0;
 //   for (const value of Object.values(stock)) {
 //     total += value;
@@ -395,23 +410,23 @@
 
 // console.log(
 //   getStockReport({
-//     companyName: 'Cyberdyne Systems',
+//     companyName: "Cyberdyne Systems",
 //     stock: {
 //       repairBots: 150,
 //       defenceBots: 50,
 //     },
-//   }),
+//   })
 // ); // "Cyberdyne Systems has 200 items in stock"
 
 // console.log(
 //   getStockReport({
-//     companyName: 'Belacci',
+//     companyName: "Belacci",
 //     stock: {
 //       shoes: 20,
 //       skirts: 10,
 //       hats: 5,
 //     },
-//   }),
+//   })
 // ); // "Belacci has 35 item in stock"
 // ```
 
@@ -432,18 +447,27 @@
 //   };
 // }
 
+// function createContact(contact) {
+//   return {
+//     id: null,
+//     createAt: null,
+//     list: "default",
+//     ...contact,
+//   };
+// }
+
 // console.log(
 //   createContact({
-//     name: 'Mango',
-//     email: 'mango@mail.com',
-//     list: 'friends',
-//   }),
+//     name: "Mango",
+//     email: "mango@mail.com",
+//     list: "friends",
+//   })
 // );
 // console.log(
 //   createContact({
-//     name: 'Poly',
-//     email: 'poly@hotmail.com',
-//   }),
+//     name: "Poly",
+//     email: "poly@hotmail.com",
+//   })
 // );
 
 // function generateId() {
@@ -465,14 +489,21 @@
 //   };
 // }
 
+// function transformId({ firstName, lastName, ...otherValues }) {
+//   return {
+//     fullName: `${firstName} ${lastName}`,
+//     ...otherValues,
+//   };
+// }
+
 // console.log(
 //   transformId({
 //     id: 1,
-//     firstName: 'Jacob',
-//     lastName: 'Mercer',
-//     email: 'j.mercer@mail.com',
+//     firstName: "Jacob",
+//     lastName: "Mercer",
+//     email: "j.mercer@mail.com",
 //     friendCount: 40,
-//   }),
+//   })
 // );
 
 // console.log(
@@ -485,3 +516,137 @@
 //   }),
 // );
 // ```
+
+// const user = {
+//   email: "user@gmail.com",
+//   age: 12,
+// };
+
+// const { email: userEmail } = user;
+
+// // const userEmail = user.email
+
+// console.log("email", email);
+
+// function foo({ username } = {}) {
+//   // {username : 'Bob'}
+//   console.log(username);
+// }
+
+// foo();
+// foo({ username: "Bob" });
+
+// const firstObj = { A: 1, B: 2 };
+// const secondObj = { A: 3, C: 4 };
+// const thirdObj = {
+//   A: 5,
+//   ...firstObj,
+//   ...secondObj,
+//   C: 6,
+// };
+
+// // {A: 5}
+// // {A: 1, B:2}
+// // {A: 3, B:2, C: 4 }
+// // {A: 3, B:2, C: 6 }
+
+// console.log(thirdObj);
+
+// function foo(a, b, c, ...args) {
+//   console.log("a", a);
+//   console.log("b", b);
+//   console.log("c", c);
+//   console.log("args", args);
+// }
+
+// const foo = function (a, b, c, ...args) {
+
+// }
+
+// foo(1, 2, 3, 4, 5);
+
+// const numbers = [1, 2, 3, 4, 5];
+
+// const newNumbers = [...numbers]; // const newNumbers = [] // const newNumbers = [1,2,3,4,5]
+
+// const atTheOldToad = {
+//   potions: [
+//     { name: "Speed potion", price: 460 },
+//     { name: "Dragon breath", price: 780 },
+//     { name: "Stone skin", price: 520 },
+//   ],
+//   // Change code below this line
+//   getPotions() {
+//     return this.potions;
+//   },
+//   addPotion(newPotion) {
+//     for (let i = 0; i < this.potions.length; i += 1) {
+//       //   console.log(this.potions[i]);
+//       if (this.potions[i].name === newPotion.name) {
+//         return `Error! Potion ${newPotion} is already in your inventory!`;
+//       }
+//     }
+
+//     this.potions.push(newPotion);
+
+//     return this.potions;
+//   },
+// };
+// console.log(atTheOldToad.addPotion({ name: "Invisibility", price: 620 })); // 1
+// console.log(atTheOldToad.addPotion({ name: "Stone skin", price: 240 }));
+
+// const stones = [
+//   { name: "Изумруд", price: 1300, quantity: 4 },
+//   { name: "Бриллиант", price: 2700, quantity: 3 },
+//   { name: "Сапфир", price: 400, quantity: 7 },
+//   { name: "Щебень", price: 200, quantity: 2 },
+// ];
+
+// function calc(stones, stoneName) {
+//   for (let stone of stones) {
+//     if (stone.name === stoneName) {
+//       return stone.price * stone.quantity;
+//     }
+//   }
+// }
+
+// function calc(stones, stoneName) {
+//   for (let { name, price, quantity } of stones) {
+//     if (name === stoneName) {
+//       return price * quantity;
+//     }
+//   }
+// }
+
+// function calc(stones, stoneName) {
+//   let result = 0;
+//   for (let { name, price, quantity } of stones) {
+//     if (name === stoneName) {
+//       result = price * quantity;
+//     }
+//     return result;
+//   }
+// }
+
+// console.log(calc(stones, "Щебень"));
+
+// const users = [];
+// const user = {};
+
+// 1) Спрашивать у пользователя товары которые он хочеть курпить
+// 2 ) Добавлять эти товары в корзину
+// 3) Страшивать должны до тех пор пока он не нажмет "Отмена" или "ESC"
+// 4) Вывести список товаров в консоль
+
+// const cart = [];
+// let item = "";
+// do {
+//   item = prompt("Enter item name");
+//   if (item !== null) {
+//     console.log("oldCart", [...cart]);
+//     cart.push(item);
+//     console.log("newCart", [...cart]);
+//   }
+// } while (item !== null);
+
+// console.log(cart);
