@@ -1,652 +1,295 @@
-// # Модуль 3. Занятие 1. Объекты
+// # Модуль 4. Занятие 7. Коллбеки. Стрелочные функции. forEach
 
-// <!-- https://github.com/luxplanjay/js-33-qna/blob/03-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B/js/vehicles.js -->
+// ## Example 1 - Коллбек функции
 
-// ## Example 1 - Основы обьектов
+// Напишите следующие функции:
 
-// Напиши скрипт, который, для объекта `user`, последовательно:
-
-// - добавляет поле `mood` со значением `'happy'`
-// - заменяет значение `hobby` на `'skydiving'`
-// - заменяет значение `premium` на `false`
-// - выводит содержимое объекта `user` в формате `ключ:значение` используя
-//   `Object.keys()` и `for...of`
-
-// ### Код
+// - `createProduct(obj, callback)` - принимает объект товара без id, а также
+//   колбек. Функция создаёт обьект товара, добавляя ему уникальный идентификатор в
+//   свойство `id` и вызывает колбек передавая ему созданный обьект.
+// - `logProduct(product)` - коллбек принимающий обьект продукта и логирующий его в
+//   консоль
+// - `logTotalPrice(product)` - коллбек принимающий обьект продукта и логирующий
+//   общую стоимость товара в консоль
 
 // ```js
-// const user = {
-//   name: "Mango",
-//   age: 20,
-//   hobby: "html",
-//   premium: true,
-// };
-
-// user.mood = "happy";
-// user.hobby = "skydiving";
-// user.premium = false;
-
-// const keys = Object.keys(user);
-
-// for (let key of keys) {
-//   console.log(`${key}: ${user[key]}`);
-// }
-// console.log(keys);
-
-// console.log(user);
-// ```
-
-// ## Example 2 - метод Object.values()
-
-// У нас есть объект, в котором хранятся зарплаты нашей команды. Напишите код для
-// суммирования всех зарплат и сохраните результат в переменной sum. Должно
-// получиться 390. Если объект `salaries` пуст, то результат должен быть 0.
-
-// ### Код
-
-// ```js
-// const salaries = {
-//   John: 100,
-//   Ann: 160,
-//   Pete: 130,
-// };
-
-// function calcSalary(salaries) {
-//   const values = Object.values(salaries);
-//   let total = 0;
-//   for (let value of values) {
-//     total += value;
-//   }
-//   return total;
+// // Решение
+// function createProduct(partialProduct, callback) {
+//   const product = { id: Date.now(), ...partialProduct };
+//   callback(product);
 // }
 
-// console.log(calcSalary(salaries));
-// console.log(calcSalary({}));
+// function logProduct(product) {
+//   console.log(product);
+// }
 
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
+// }
+
+// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
 // ```
 
-// ## Example 3 - Массив объектов
+// ## Example 2 - Коллбек функции
 
-// Напишите ф-цию `calcTotalPrice(stones, stoneName)`, которая принимает массив
-// обьектов и строку с названием камня. Ф-ция считает и возвращает общую стоимость
-// камней с таким именем, ценой и количеством из обьекта
+// Добавьте объекту `account` методы `withdraw(amount, onSuccess, onError)` и
+// `deposit(amount, onSuccess, onError)`, где первый параметр это сумма операции, а
+// второй и третий - колбеки.
 
-// ### Код
+// Метод `withdraw` вызывает onError если amount больше TRANSACTION_LIMIT или
+// this.balance, и onSuccess в противном случае.
 
-// ```js
-// const stones = [
-//   { name: 'Изумруд', price: 1300, quantity: 4 },
-//   { name: 'Бриллиант', price: 2700, quantity: 3 },
-//   { name: 'Сапфир', price: 400, quantity: 7 },
-//   { name: 'Щебень', price: 200, quantity: 2 },
-// ];
-// ```
-
-// ## Example 4 - Комплексные задачи
-
-// Напиши скрипт управления личным кабинетом интернет банка. Есть объект `account`
-// в котором необходимо реализовать методы для работы с балансом и историей
-// транзакций.
+// Метод `deposit` вызывает onError если amount больше TRANSACTION_LIMIT или меньше
+// либо равен нулю, и onSuccess в противном случае.
 
 // ```js
-// /*
-//  * Типов транзацкий всего два.
-//  * Можно положить либо снять деньги со счета.
-//  */
-// const Transaction = {
-//   WITHDRAW: "withdraw",
-//   DEPOSIT: "deposit",
-// };
-
-// // /*
-// //  * Каждая транзакция это объект со свойствами: id, type и amount
-// //  */
+// // Решение
+// const TRANSACTION_LIMIT = 1000;
 
 // const account = {
-//   // Текущий баланс счета
-//   balance: 0,
-
-//   // История транзакций
-//   transactions: [],
-
-//   /*
-//    * Метод создает и возвращает объект транзакции.
-//    * Принимает сумму и тип транзакции.
-//    */
-//   createTransaction(amount, type) {
-//     return {
-//       amount,
-//       type,
-//       id: this.transactions.length,
-//     };
-//   },
-
-//   /*
-//    * Метод отвечающий за добавление суммы к балансу.
-//    * Принимает сумму танзакции.
-//    * Вызывает createTransaction для создания объекта транзакции
-//    * после чего добавляет его в историю транзакций
-//    */
-//   deposit(amount) {
-//     const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
-//     this.transactions.push(transaction);
-//     this.balance += amount;
-//   },
-
-//   /*
-//    * Метод отвечающий за снятие суммы с баланса.
-//    * Принимает сумму танзакции.
-//    * Вызывает createTransaction для создания объекта транзакции
-//    * после чего добавляет его в историю транзакций.
-//    *
-//    * Если amount больше чем текущий баланс, выводи сообщение
-//    * о том, что снятие такой суммы не возможно, недостаточно средств.
-//    */
-//   withdraw(amount) {
-//     const transaction = this.createTransaction(amount, Transaction.WITHDRAW);
-//     this.transactions.push(transaction);
-//     this.balance -= amount;
-//   },
-
-//   /*
-//    * Метод возвращает текущий баланс
-//    */
-//   getBalance() {
-//     // this = account
-//     return this.balance; // account.balance
-//   },
-
-//   /*
-//    * Метод ищет и возвращает объект транзации по id
-//    */
-//   getTransactionDetails(id) {
-//     for (let transaction of this.transactions) {
-//       if (transaction.id === id) {
-//         return transaction;
-//       }
+//   username: 'Jacob',
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
 //     }
 //   },
-
-//   /*
-//    * Метод возвращает количество средств
-//    * определенного типа транзакции из всей истории транзакций
-//    */
-//   getTransactionTotal(type) {
-//     let total = 0;
-
-//     for (let transaction of this.transactions) {
-//       if (transaction.type === type) {
-//         total += transaction.amount;
-//       }
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
 //     }
-//     return total;
 //   },
 // };
-// // ```
 
-// console.log(account.getBalance());
-// account.deposit(450);
-// account.deposit(50);
-// account.withdraw(100);
-// account.deposit(100);
-// account.withdraw(50);
-// console.log(account.getBalance());
-
-// console.log(account.getTransactionDetails(0));
-// console.log(account.getTransactionTotal(Transaction.DEPOSIT));
-// console.log(account.getTransactionTotal(Transaction.WITHDRAW));
-
-// console.log(account);
-
-// const string = "The brown fox jumps over lazy dog";
-
-// function findLongestWord(string) {
-//   const wordArray = string.split(" ");
-//   let result = wordArray[0];
-//   for (let word of wordArray) {
-//     if (word.length >= result.length) {
-//       result = word;
-//     }
-//   }
-//   return result;
+// function handleSuccess(message) {
+//   console.log(`✅ Success! ${message}`);
+// }
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
 // }
 
-// console.log(findLongestWord(string));
-
-// const user = {
-//   name: "Bob",
-//   email: "user@gmail",
-//   //   info: {
-//   //     age: 23,
-//   //     gender: "male",
-//   //   },
-// };
-
-// console.log(user.info && user.info.age);
-// console.log(user.info?.age);
-
-// console.log(user && user.info && user.info.age);
-// console.log(user?.info?.age);
-
-// function getExtremeElements(array) {
-//   console.log(array);
-// }
-
-// getExtremeElements([1, 3, 5, 6, 8]);
-
-// function checkAge(age) {
-//   if (age >= 18) {
-//     // Change this line
-//     return "You are an adult"; // stop
-//   }
-//   return "You are a minor";
-// }
-
-// function checkAge(age) {
-//   if (age >= 18) {
-//     // Change this line
-//     return "You are an adult"; // stop
-//   } else {
-//     return "You are a minor";
-//   }
-// }
-
-// const user = {
-//   name: "Bob",
-//   age: 13,
-//   status: true,
-// };
-
-// for (let key in user) {
-//   if (user.hasOwnProperty(key)) {
-//     console.log(key);
-//   }
-// }
-
-// console.log(user);
-
-// const objKey = prompt("Enter key name");
-
-// function showValue(obj, keyName) {
-//   console.log(obj[keyName]);
-// }
-
-// showValue(user, objKey);
-
-// const key = prompt("Enter key name");
-// const value = prompt("enter value");
-
-// const user2 = {
-//   [key]: value,
-// };
-
-// console.log(user2);
-
-/////////////////////////////////////////////// lesson #6
-
-// # Модуль 3 Занятие 6. Деструктуризация и rest/spread
-
-// ## Example 1 - Деструктуризация
-
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
-
-// ```js
-// function calcBMI({ weight, height }) {
-//   const numericWeight = Number(weight.replace(",", "."));
-//   const numericHeight = Number(height.replace(",", "."));
-//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
-// }
-
-// // Было
-// console.log(calcBMI('1.75', '88,3));
-// console.log(calcBMI('68,3', '1.65'));
-// console.log(calcBMI('118,3', '1.95'));
-
-// // Ожидается
-// console.log(
-//   calcBMI({
-//     weight: "88,3",
-//     height: "1.75",
-//   })
-// );
-// console.log(
-//   calcBMI({
-//     height: "1.65",
-//     weight: "68,3",
-//   })
-// );
-// console.log(
-//   calcBMI({
-//     height: "1.95",
-//     weight: "118,3",
-//   })
-// );
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
 // ```
 
-// ## Example 2 - Деструктуризация
+// ## Example 3 - Коллбек функции
 
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
-
-// ```js
-// function printContactsInfo({ names, phones }) {
-//   const nameList = names.split(",");
-//   const phoneList = phones.split(",");
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
-//   }
-// }
-
-// function printContactsInfo(data) {
-//   const { names, phones } = data;
-//   const nameList = names.split(",");
-//   const phoneList = phones.split(",");
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
-//   }
-// }
-
-// // Было
-// // printContactsInfo(
-// //   'Jacob,William,Solomon,Artemis',
-// //   '89001234567,89001112233,890055566377,890055566300',
-// // );
-
-// // Ожидается
-// printContactsInfo({
-//   names: "Jacob,William,Solomon,Artemis",
-//   phones: "89001234567,89001112233,890055566377,890055566300",
-// });
-// ```
-
-// ## Example 3 - Глубокая деструктуризация
-
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
-
-// ```js
-// function getBotReport({ companyName, bots: { repair, defence } }) {
-//   return `${companyName} has ${repair + defence} bots in stock`;
-// }
-
-// function getBotReport({ companyName, bots }) {
-//   const { repair, defence } = bots;
-//   return `${companyName} has ${repair + defence} bots in stock`;
-// }
-
-// // // Было
-// // // console.log(getBotReport('Cyberdyne Systems', 150, 50));
-
-// // // Ожидается
-// console.log(
-//   getBotReport({
-//     companyName: "Cyberdyne Systems",
-//     bots: {
-//       repair: 150,
-//       defence: 50,
-//     },
-//   })
-// ); // "Cyberdyne Systems has 200 bots in stock"
-// ```
-
-// ## Example 4 - Деструктуризация
-
-// Перепиши функцию так, чтобы она принимала объект параметров со свойствами
-// `companyName` и `stock` и выводила репорт о количестве товаров на складе любой
-// компании.
+// Напишите функцию `each(array, callback)`, которая первым параметром ожидает
+// массив, а вторым - функцию, которая применится к каждому элементу массива.
+// Функция each должна вернуть новый массив, элементами которого будут результаты
+// вызова коллбека.
 
 // ```js
 // // Решение
-// function getStockReport({ companyName, stock }) {
-//   //   const { repairBots, defenceBots } = stock;
-//   //   const total = repairBots + defenceBots;
-//   let total = 0;
-//   for (const value of Object.values(stock)) {
-//     total += value;
+// function each(array, callback) {
+//   const newArr = [];
+//   for (const el of array) {
+//     newArr.push(callback(el));
 //   }
-//   return `${companyName} has ${total} items in stock`;
+//   return newArr;
 // }
 
 // console.log(
-//   getStockReport({
-//     companyName: "Cyberdyne Systems",
-//     stock: {
-//       repairBots: 150,
-//       defenceBots: 50,
-//     },
-//   })
-// ); // "Cyberdyne Systems has 200 items in stock"
-
-// console.log(
-//   getStockReport({
-//     companyName: "Belacci",
-//     stock: {
-//       shoes: 20,
-//       skirts: 10,
-//       hats: 5,
-//     },
-//   })
-// ); // "Belacci has 35 item in stock"
-// ```
-
-// ## Example 5 - Операция spread
-
-// Дополни функцию `createContact(partialContact)` так, чтобы она возвращала новый
-// объект контакта с добавленными свойствами `id` и `createdAt`, а также `list` со
-// значением "default" если в `partialContact` нет такого свойства.
-
-// ```js
-// // Решение
-// function createContact(partialContact) {
-//   return {
-//     list: 'default',
-//     ...partialContact,
-//     id: generateId(),
-//     createdAt: Date.now(),
-//   };
-// }
-
-// function createContact(contact) {
-//   return {
-//     id: null,
-//     createAt: null,
-//     list: "default",
-//     ...contact,
-//   };
-// }
-
-// console.log(
-//   createContact({
-//     name: "Mango",
-//     email: "mango@mail.com",
-//     list: "friends",
-//   })
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value * 2;
+//   }),
 // );
 // console.log(
-//   createContact({
-//     name: "Poly",
-//     email: "poly@hotmail.com",
-//   })
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value - 10;
+//   }),
 // );
-
-// function generateId() {
-//   return '_' + Math.random().toString(36).substr(2, 9);
-// }
-// ```
-
-// ## Example 6 - Операция rest
-
-// Напиши функцию `transformUsername(user)` так, чтобы она возвращала новый обьект
-// со свойством `fullName`, вместо `firstName` и `lastName`.
-
-// ```js
-// // Решение
-// function transformUsername({ firstName, lastName, ...otherProps }) {
-//   return {
-//     fullName: `${firstName} ${lastName}`,
-//     ...otherProps,
-//   };
-// }
-
-// function transformId({ firstName, lastName, ...otherValues }) {
-//   return {
-//     fullName: `${firstName} ${lastName}`,
-//     ...otherValues,
-//   };
-// }
-
 // console.log(
-//   transformId({
-//     id: 1,
-//     firstName: "Jacob",
-//     lastName: "Mercer",
-//     email: "j.mercer@mail.com",
-//     friendCount: 40,
-//   })
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return Math.sqrt(value);
+//   }),
 // );
-
 // console.log(
-//   transformId({
-//     id: 2,
-//     firstName: 'Adrian',
-//     lastName: 'Cross',
-//     email: 'a.cross@hotmail.com',
-//     friendCount: 20,
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.ceil(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
 //   }),
 // );
 // ```
 
-// const user = {
-//   email: "user@gmail.com",
-//   age: 12,
-// };
+// ## Example 4 - Стрелочные функции
 
-// const { email: userEmail } = user;
+// Выполните рефакторинг кода используя стрелочные функции.
 
-// // const userEmail = user.email
-
-// console.log("email", email);
-
-// function foo({ username } = {}) {
-//   // {username : 'Bob'}
-//   console.log(username);
+// ```js
+// function createProduct(partialProduct, callback) {
+//   const product = { id: Date.now(), ...partialProduct };
+//   callback(product);
 // }
 
-// foo();
-// foo({ username: "Bob" });
-
-// const firstObj = { A: 1, B: 2 };
-// const secondObj = { A: 3, C: 4 };
-// const thirdObj = {
-//   A: 5,
-//   ...firstObj,
-//   ...secondObj,
-//   C: 6,
-// };
-
-// // {A: 5}
-// // {A: 1, B:2}
-// // {A: 3, B:2, C: 4 }
-// // {A: 3, B:2, C: 6 }
-
-// console.log(thirdObj);
-
-// function foo(a, b, c, ...args) {
-//   console.log("a", a);
-//   console.log("b", b);
-//   console.log("c", c);
-//   console.log("args", args);
+// function logProduct(product) {
+//   console.log(product);
 // }
 
-// const foo = function (a, b, c, ...args) {
-
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
 // }
 
-// foo(1, 2, 3, 4, 5);
+// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+// ```
 
-// const numbers = [1, 2, 3, 4, 5];
+// ## Example 5 - Стрелочные функции
 
-// const newNumbers = [...numbers]; // const newNumbers = [] // const newNumbers = [1,2,3,4,5]
+// Выполните рефакторинг кода используя стрелочные функции.
 
-// const atTheOldToad = {
-//   potions: [
-//     { name: "Speed potion", price: 460 },
-//     { name: "Dragon breath", price: 780 },
-//     { name: "Stone skin", price: 520 },
-//   ],
-//   // Change code below this line
-//   getPotions() {
-//     return this.potions;
-//   },
-//   addPotion(newPotion) {
-//     for (let i = 0; i < this.potions.length; i += 1) {
-//       //   console.log(this.potions[i]);
-//       if (this.potions[i].name === newPotion.name) {
-//         return `Error! Potion ${newPotion} is already in your inventory!`;
-//       }
+// ```js
+// const TRANSACTION_LIMIT = 1000;
+
+// const account = {
+//   username: 'Jacob',
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
 //     }
-
-//     this.potions.push(newPotion);
-
-//     return this.potions;
+//   },
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
 //   },
 // };
-// console.log(atTheOldToad.addPotion({ name: "Invisibility", price: 620 })); // 1
-// console.log(atTheOldToad.addPotion({ name: "Stone skin", price: 240 }));
 
-// const stones = [
-//   { name: "Изумруд", price: 1300, quantity: 4 },
-//   { name: "Бриллиант", price: 2700, quantity: 3 },
-//   { name: "Сапфир", price: 400, quantity: 7 },
-//   { name: "Щебень", price: 200, quantity: 2 },
-// ];
+// function handleSuccess(message) {
+//   console.log(`✅ Success! ${message}`);
+// }
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
+// }
 
-// function calc(stones, stoneName) {
-//   for (let stone of stones) {
-//     if (stone.name === stoneName) {
-//       return stone.price * stone.quantity;
-//     }
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
+// ```
+
+// ## Example 6 - Инлайн стрелочные функции
+
+// Выполните рефакторинг кода используя стрелочные функции.
+
+// ```js
+// function each(array, callback) {
+//   const newArr = [];
+//   for (const el of array) {
+//     newArr.push(callback(el));
+//   }
+//   return newArr;
+// }
+
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value * 2;
+//   }),
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value - 10;
+//   }),
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return Math.sqrt(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.ceil(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
+//   }),
+// );
+// ```
+
+// ## Example 7 - Метод forEach
+
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
+
+// ```js
+// function logItems(items) {
+//   console.log(items);
+//   for (let i = 0; i < items.length; i += 1) {
+//     console.log(`${i + 1} - ${items[i]}`);
 //   }
 // }
 
-// function calc(stones, stoneName) {
-//   for (let { name, price, quantity } of stones) {
-//     if (name === stoneName) {
-//       return price * quantity;
-//     }
+// logItems(['Mango', 'Poly', 'Ajax']);
+// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+// ```
+
+// ## Example 8 - Метод forEach
+
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
+
+// ```js
+// function printContactsInfo({ names, phones }) {
+//   const nameList = names.split(',');
+//   const phoneList = phones.split(',');
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
 //   }
 // }
 
-// function calc(stones, stoneName) {
-//   let result = 0;
-//   for (let { name, price, quantity } of stones) {
-//     if (name === stoneName) {
-//       result = price * quantity;
-//     }
-//     return result;
+// printContactsInfo({
+//   names: 'Jacob,William,Solomon,Artemis',
+//   phones: '89001234567,89001112233,890055566377,890055566300',
+// });
+// ```
+
+// ## Example 9 - Метод forEach
+
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
+
+// ```js
+// function calсulateAverage(...args) {
+//   let total = 0;
+//   for (let i = 0; i < args.length; i++) {
+//     total += args[i];
 //   }
+//   return total / args.length;
 // }
 
-// console.log(calc(stones, "Щебень"));
-
-// const users = [];
-// const user = {};
-
-// 1) Спрашивать у пользователя товары которые он хочеть курпить
-// 2 ) Добавлять эти товары в корзину
-// 3) Страшивать должны до тех пор пока он не нажмет "Отмена" или "ESC"
-// 4) Вывести список товаров в консоль
-
-// const cart = [];
-// let item = "";
-// do {
-//   item = prompt("Enter item name");
-//   if (item !== null) {
-//     console.log("oldCart", [...cart]);
-//     cart.push(item);
-//     console.log("newCart", [...cart]);
-//   }
-// } while (item !== null);
-
-// console.log(cart);
+// console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
+// console.log(calсulateAverage(14, 8, 2)); // 8
+// console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
