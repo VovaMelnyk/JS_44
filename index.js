@@ -362,23 +362,167 @@
 
 //lesson #8 //////////////////////////////////////////////////////
 
+// const allCourses = [
+//   "математика",
+//   "фізика",
+//   "інформатика",
+//   "математика",
+//   "фізика",
+//   "біологія",
+// ];
+
+// const uniqueCourses = allCourses.filter(
+//   (course, index, array) => array.indexOf(course) === index
+// );
+
+//1 []
+//2 allCourses.indexOf('математика) // 0
+//3 0 === 0
+// ["математика"]
+
+// 1 // ["математика"]
+// 2 allCourses.indexOf('фізика) // 1
+// 3 index === 1
+// 4 1 === 1
+// 5 ["математика", "фізика"]
+
+// 1 // ["математика", "фізика"]
+// 2 allCourses.indexOf('інформатика) // 2
+// 3 index === 2
+// 4 2 === 2
+// 5 ["математика", "фізика", "інформатика"]
+
+// 1 ["математика", "фізика", "інформатика"]
+// 2 allCourses.indexOf("математика") // 0
+// 3 index === 3
+// 5 0 === 3 // false
+// 6 ["математика", "фізика", "інформатика"]
+
+// console.log("uniqueCourses", uniqueCourses);
+
+// const pizzaPalace = {
+//   pizzas: ["Ultracheese", "Smoked", "Four meats"],
+//   order(pizzaName, onSuccess, onError) {
+//     return this.pizzas.includes(pizzaName)
+//       ? onSuccess(pizzaName)
+//       : onError(pizzaName);
+//   },
+// };
+
+// function makePizza(pizzaName) {
+//   return `Your order is accepted. Cooking pizza ${pizzaName}.`;
+// }
+
+// // Callback for onError
+// function onOrderError(error) {
+//   return `Error! ${error}`;
+// }
+
+// // Method calls with callbacks
+// console.log(pizzaPalace.order("Smoked", makePizza, onOrderError));
+// console.log(pizzaPalace.order("Four meats", makePizza, onOrderError));
+// console.log(pizzaPalace.order("Big Mike", makePizza, onOrderError));
+
+// console.log(pizzaPalace.order("Vienna", makePizza, onOrderError));
+
+// const add = (a, b) => a + b;
+// add(2, 3)
+
+// const filterArray = (arr) => {
+//   const newArr = arr.slice();
+//   newArr.push(2);
+//   return arr;
+// };
+
 // # Модуль 4. Занятие 8. Перебирающие методы массива
 
 // ## Коллекция объектов для всех примеров с автомобилями
 
+// const result = array.forEach((el) => el * 2); // result = undefined
+
 // ```js
-// const cars = [
-//   { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
-//   { make: 'Honda', model: 'Accord', type: 'sedan', amount: 2, price: 22455, onSale: true },
-//   { make: 'Mazda', model: 'Mazda 6', type: 'sedan', amount: 8, price: 24195, onSale: false },
-//   { make: 'Mazda', model: 'CX-9', type: 'suv', amount: 7, price: 31520, onSale: true },
-//   { make: 'Toyota', model: '4Runner', type: 'suv', amount: 19, price: 34210, onSale: false },
-//   { make: 'Toyota', model: 'Sequoia', type: 'suv', amount: 16, price: 45560, onSale: false },
-//   { make: 'Toyota', model: 'Tacoma', type: 'truck', amount: 4, price: 24320, onSale: true },
-//   { make: 'Ford', model: 'F-150', type: 'truck', amount: 11, price: 27110, onSale: true },
-//   { make: 'Ford', model: 'Fusion', type: 'sedan', amount: 13, price: 22120, onSale: true },
-//   { make: 'Ford', model: 'Explorer', type: 'suv', amount: 6, price: 31660, onSale: false }
-// ];
+const cars = [
+  {
+    make: "Honda",
+    model: "CR-V",
+    type: "suv",
+    amount: 14,
+    price: 24045,
+    onSale: true,
+  },
+  {
+    make: "Honda",
+    model: "Accord",
+    type: "sedan",
+    amount: 2,
+    price: 22455,
+    onSale: true,
+  },
+  {
+    make: "Mazda",
+    model: "Mazda 6",
+    type: "sedan",
+    amount: 8,
+    price: 24195,
+    onSale: false,
+  },
+  {
+    make: "Mazda",
+    model: "CX-9",
+    type: "suv",
+    amount: 7,
+    price: 31520,
+    onSale: true,
+  },
+  {
+    make: "Toyota",
+    model: "4Runner",
+    type: "suv",
+    amount: 19,
+    price: 34210,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Sequoia",
+    type: "suv",
+    amount: 16,
+    price: 45560,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Tacoma",
+    type: "truck",
+    amount: 4,
+    price: 24320,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "F-150",
+    type: "truck",
+    amount: 11,
+    price: 27110,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Fusion",
+    type: "sedan",
+    amount: 13,
+    price: 22120,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Explorer",
+    type: "suv",
+    amount: 6,
+    price: 31660,
+    onSale: false,
+  },
+];
 // ```
 
 // ## Example 1 - Метод map
@@ -387,7 +531,7 @@
 // автомобилей.
 
 // ```js
-// const getModels = cars => {};
+// const getModels = (cars) => cars.map((car) => car.model);
 
 // console.table(getModels(cars));
 // ```
@@ -398,7 +542,14 @@
 // значением свойства `price` в зависимости от переданной скидки.
 
 // ```js
-// const makeCarsWithDiscount = (cars, discount) => {};
+// const makeCarsWithDiscount = (cars, discount) =>
+//   cars.map((car) => ({ ...car, price: car.price - car.price * discount }));
+
+// const makeCarsWithDiscount = (cars, discount) =>
+//   cars.map((car) => ({ ...car, price: car.price * (1 - discount) }));
+
+// const makeCarsWithDiscount = (cars, discount) =>
+//   cars.map((car) => car.price * (1 - discount)); /// не правильно
 
 // console.table(makeCarsWithDiscount(cars, 0.2));
 // console.table(makeCarsWithDiscount(cars, 0.4));
@@ -410,7 +561,8 @@
 // чем значение параметра `threshold`.
 
 // ```js
-// const filterByPrice = (cars, threshold) => {};
+// const filterByPrice = (cars, threshold) =>
+//   cars.filter((car) => car.price < threshold);
 
 // console.table(filterByPrice(cars, 30000));
 // console.table(filterByPrice(cars, 25000));
@@ -422,7 +574,9 @@
 // onSale которых true.
 
 // ```js
-// const getCarsWithDiscount = cars => {};
+// const getCarsWithDiscount = (cars) => cars.filter((car) => car.onSale);
+
+// const getCarsWithDiscount = (cars) => cars.filter((car) => car.onSale === true);
 
 // console.table(getCarsWithDiscount(cars));
 // ```
@@ -433,19 +587,19 @@
 // совпадает со значением параметра `type`.
 
 // ```js
-// const getCarsWithType = (cars, type) => {};
+// const getCarsWithType = (cars, type) => cars.filter((car) => car.type === type);
 
-// console.table(getCarsWithType(cars, 'suv'));
-// console.table(getCarsWithType(cars, 'sedan'));
+// console.table(getCarsWithType(cars, "suv"));
+// console.table(getCarsWithType(cars, "sedan"));
 // ```
 
 // ## Example 6 - Метод find
 
 // ```js
-// const getCarByModel = (cars, model) => {};
+// const getCarByModel = (cars, model) => cars.find((car) => car.model === model);
 
-// console.log(getCarByModel(cars, 'F-150'));
-// console.log(getCarByModel(cars, 'CX-9'));
+// console.log(getCarByModel(cars, "F-150"));
+// console.log(getCarByModel(cars, "CX-9"));
 // ```
 
 // ## Example 7 - Метод sort
@@ -454,7 +608,31 @@
 // отсортированный по возврастанию значения свойства `amount`.
 
 // ```js
-// const sortByAscendingAmount = cars => {};
+// const sortByAscendingAmount = (cars) => [
+//   ...cars.sort((a, b) => b.amount - a.amount), // 14 - 2 = 12
+// ];
+
+// const sortByAscendingAmount = (cars) => [
+//   ...cars.sort((a, b) => (a.amount > b.amount ? 23 : -999)),
+// ];
+
+// 1 a = {
+//     make: "Honda",
+//     model: "CR-V",
+//     type: "suv",
+//     amount: 14,
+//     price: 24045,
+//     onSale: true,
+//   }
+
+// b = {
+//   make: "Honda",
+//   model: "Accord",
+//   type: "sedan",
+//   amount: 2,
+//   price: 22455,
+//   onSale: true,
+// },
 
 // console.table(sortByAscendingAmount(cars));
 // ```
@@ -465,10 +643,12 @@
 // отсортированный по убыванию значения свойства `price`.
 
 // ```js
-// const sortByDescendingPrice = cars => {};
+// const sortByDescendingPrice = (cars) => [
+//   ...cars.sort((a, b) => b.price - a.price),
+// ];
 
 // console.table(sortByDescendingPrice(cars));
-// ```
+// ``
 
 // ## Example 9 - Метод sort
 
@@ -477,10 +657,18 @@
 // значения параметра `order`.
 
 // ```js
-// const sortByModel = (cars, order) => {};
+// const sortByModel = (cars, order) =>
+//   [...cars].sort((a, b) => {
+//     if (order === "asc") {
+//       return a.model > b.model ? 1 : -1;
+//     }
+//     if (order === "desc") {
+//       return a.model < b.model ? 1 : -1;
+//     }
+//   });
 
-// console.table(sortByModel(cars, 'asc'));
-// console.table(sortByModel(cars, 'desc'));
+// console.table(sortByModel(cars, "asc")); // a - z а - я ASCENDING
+// console.table(sortByModel(cars, "desc")); // z - a я - а DESCENDING
 // ```
 
 // ## Example 10 - Метод reduce
@@ -489,7 +677,16 @@
 // свойств `amount`).
 
 // ```js
-// const getTotalAmount = cars => {};
+// const getTotalAmount = (cars) => {
+//   let total = 0;
+//   for (let car of cars) {
+//     total += car.amount;
+//   }
+//   return total;
+// };
+
+// const getTotalAmount = (cars) => cars.reduce((acc, car) => acc + car.amount);
+// acc = {model, mark, price, amount} + 12
 
 // console.log(getTotalAmount(cars));
 // ```
@@ -500,7 +697,8 @@
 // только тех, которые сейчас на распродаже.
 
 // ```js
-// const getModelsOnSale = cars => {};
+// const getModelsOnSale = (cars) =>
+//   cars.filter((car) => car.onSale).map((car) => car.model);
 
 // console.table(getModelsOnSale(cars));
 // ```
@@ -511,7 +709,10 @@
 // (свойство onSale), отсортированных по возрастанию цены.
 
 // ```js
-// const getSortedCarsOnSale = cars => {};
+// const getSortedCarsOnSale = (cars) =>
+//   cars.filter((car) => car.onSale).sort((a, b) => a.price - b.price);
 
 // console.table(getSortedCarsOnSale(cars));
+
+// console.log(cars);
 // ```
