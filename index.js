@@ -202,6 +202,82 @@
 
 // Lesson 10
 
+// const Car = function (model, year) {
+//   // this = {}
+//   this.model = model;
+//   this.year = year;
+//   // return this
+// };
+
+// const car = new Car("BMW", "2020");
+
+// console.log(car);
+
+// class User {
+//   constructor(name, surname, age) {
+//     this.name = name;
+//     this.surname = surname;
+//     this.age = age;
+//   }
+// }
+
+// class ContentEditor extends User {
+//   // class in JS
+//   constructor(name, surname, age, role) {
+//     super(name, surname, age);
+//     this.role = role;
+//   }
+//   // Тело класса ContentEditor
+// }
+
+// const editor = new ContentEditor("Bob", "Dou", "12", "editor"); // {name: "Bob", surname: "Dou", age: "12", role: "editor"}
+
+// const ContentEditor = new User(); // object
+
+// class Car {
+//   constructor(model, year) {
+//     // this = {}
+//     this.model = model;
+//     this.year = year;
+//     // return this
+//   }
+
+//   getYear() {
+//     return this.year;
+//   }
+
+//   getModel() {
+//     return this.model;
+//   }
+
+//   #getInfo() {
+//     return `${this.model} ${this.year}`;
+//   }
+
+//   showInfo() {
+//     return `${this.#getInfo()}!`;
+//   }
+// }
+
+// const car = new Car("BMW", "2020");
+// car.#getInfo();
+// const audi = new Car("Audi", "2021");
+
+// console.log(car);
+// console.log(audi);
+
+// const age = prompt("Введите ваш возраст");
+
+// if (age < 0) {
+// } else {
+//   console.log("Error");
+// }
+
+// if (age > 0) {
+//   console.log("Error");
+// }
+
+// const result = age < 0 ? null : "Error";
 // # Модуль 5. Занятие 10. Прототипы и классы
 
 // ## Example 1 - Блоггер
@@ -221,19 +297,38 @@
 // Добавь метод `updatePostCount(value)`, который в параметре `value` принимает
 // количество постов которые нужно добавить пользователю.
 
-// ```js
-// const mango = new User({
-//   name: 'mango@mail.com',
+// class Blogger {
+//   constructor({ email, age, numberOfPosts, topics }) {
+//     this.email = email;
+//     this.age = age;
+//     this.numberOfPosts = numberOfPosts;
+//     this.topics = topics;
+//   }
+
+//   getInfo() {
+//     return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts`;
+//   }
+
+//   updatePostCount(value) {
+//     this.numberOfPosts += value;
+//   }
+// }
+
+// // ```js
+// const mango = new Blogger({
+//   email: "mango@mail.com",
 //   age: 24,
 //   numberOfPosts: 20,
-//   topics: ['tech', 'cooking'],
+//   topics: ["tech", "cooking"],
 // });
+
+// console.log(mango);
 // console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 20 posts
 // mango.updatePostCount(5);
 // console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 25 posts
 
 // const poly = new User({
-//   name: 'poly@mail.com',
+//   email: 'poly@mail.com',
 //   age: 19,
 //   numberOfPosts: 17,
 //   topics: ['sports', 'gaming', 'health'],
@@ -255,33 +350,103 @@
 // - `addItem(item)` - получает новый товар и добавляет его к текущим.
 // - `removeItem(item)` - получает товар и, если он есть, удаляет его из текущих.
 
+// class Storage {
+//   constructor(items) {
+//     this.items = items;
+//   }
+
+//   getItems() {
+//     return this.items;
+//   }
+
+//   addItem(item) {
+//     this.items.push(item);
+//   }
+
+//   removeItem(item) {
+//     this.items = this.items.filter((storageItem) => storageItem !== item);
+//   }
+
+// fruits.filter((arrayElement, index, array) => { }))
+
+// 1) [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+// 2) item = '🍋'
+// 3)
+// First loop:
+// item = "🍋";
+// storageItem = "🍎";
+// "🍎" !== "🍋" // true
+
+// 4) result = ["🍎" ]
+
+//Second loop:
+// item = "🍋";
+// storageItem = "🍋";
+// "🍋" !== "🍋" // false
+// 4) result = ["🍎" ]
+
+// Third loop:
+// item = "🍋";
+// storageItem = "🍇";
+// "🍇" !== "🍋" // true
+// result = ["🍎", "🍇"]
+// }
+
 // ```js
-// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+// const storage = new Storage(["🍎", "🍋", "🍇", "🍑"]);
 
 // const items = storage.getItems();
-// console.table(items); // [ '🍎', '🍋', '🍇', '🍑' ]
 
-// storage.addItem('🍌');
-// console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+// storage.addItem("🍌");
+// // console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
 
-// storage.removeItem('🍋');
+// storage.removeItem("🍋");
 // console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]
 // ```
 
+// console.log(storage);
 // ## Example 3 - User
 
 // Напиши класс `User` который создаёт объект со свойствами `login` и `email`.
 // Объяви приватные свойства `#login` и `#email`, доступ к которым сделай через
 // геттер и сеттер `login` и `email`.
 
-// ```js
+// class User {
+//   #login;
+//   #email;
+
+//   constructor({ login, email }) {
+//     this.#login = login;
+//     this.#email = email;
+//   }
+
+//   get login() {
+//     return this.#login;
+//   }
+
+//   get email() {
+//     return this.#email;
+//   }
+
+//   set login(value) {
+//     this.#login = value;
+//   }
+
+//   set email(value) {
+//     this.#email = value;
+//   }
+// }
+
+// // ```js
 // const mango = new User({
-//   login: 'Mango',
-//   email: 'mango@dog.woof',
+//   login: "Mango",
+//   email: "mango@dog.woof",
 // });
 
+// console.log(mango);
+
 // console.log(mango.login); // Mango
-// mango.login = 'Mangodoge';
+// mango.login = "Mangodoge";
 // console.log(mango.login); // Mangodoge
 
 // const poly = new User({
@@ -311,22 +476,59 @@
 // Добавь методы `addNote(note)`, `removeNote(text)` и
 // `updatePriority(text, newPriority)`.
 
+// class Notes {
+//   static Priority = {
+//     LOW: "low",
+//     NORMAL: "normal",
+//     HIGH: "high",
+//   };
+
+//   constructor(items) {
+//     this.items = items;
+//   }
+
+//   addNote(note) {
+//     this.items.push(note);
+//   }
+
+//   removeNote(text) {
+//     this.items = this.items.filter((note) => note.text !== text);
+//   }
+
+//   // updatePriority(text, newPriority) {
+//   //   this.items = this.items.map((note) => {
+//   //     if (note.text === text) {
+//   //       note.priority = newPriority;
+//   //     }
+//   //     return note;
+//   //   });
+//   // }
+
+//   updatePriority(text, newPriority) {
+//     this.items = this.items.map((note) =>
+//       note.text === text ? { ...note, priority: newPriority } : note
+//     );
+//   }
+// }
+
 // ```js
 // const myNotes = new Notes([]);
 
-// myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
+// console.log("myNotes", myNotes);
+
+// myNotes.addNote({ text: "Моя первая заметка", priority: Notes.Priority.LOW });
 // console.log(myNotes.items);
 
 // myNotes.addNote({
-//   text: 'Моя вторая заметка',
+//   text: "Моя вторая заметка",
 //   priority: Notes.Priority.NORMAL,
 // });
 // console.log(myNotes.items);
 
-// myNotes.removeNote('Моя первая заметка');
+// myNotes.removeNote("Моя первая заметка");
 // console.log(myNotes.items);
 
-// myNotes.updateNote('Моя вторая заметка', Notes.Priority.HIGH);
+// myNotes.updatePriority("Моя вторая заметка", Notes.Priority.HIGH);
 // console.log(myNotes.items);
 // ```
 
@@ -351,4 +553,3 @@
 // console.log(secondToggle.on);
 // console.groupEnd('secondToggle');
 // ```
-
