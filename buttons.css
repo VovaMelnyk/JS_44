@@ -1,0 +1,44 @@
+.btn {
+  position: absolute;
+  padding: 20px 30px;
+  border-radius: 5px;
+  border: none;
+  top: 30px;
+  left: 50%;
+  color: #fff;
+  background-color: blue;
+  outline: none;
+  text-transform: capitalize;
+  font-size: 30px;
+  transition: 0.3s ease all;
+  /*transform: translate(-50%);*/
+}
+
+.win {
+  background-color: green;
+}
+
+.faill {
+  background-color: red;
+}
+
+.danger {
+  background-color: brown;
+}
+
+.atention {
+  background-color: yellowgreen;
+}
+
+/* .list__item {
+    transition: 1s;
+} */
+
+/* .change {
+    color: red;
+    font-size: 50px;
+    font-weight: 700;
+}
+.hide {
+    display: none;
+} */
