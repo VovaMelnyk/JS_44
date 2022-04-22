@@ -11,7 +11,7 @@
   text-transform: capitalize;
   font-size: 30px;
   transition: 0.3s ease all;
-  /*transform: translate(-50%);*/
+  transform: translate(-50%);
 }
 
 .win {
@@ -42,3 +42,31 @@
 .hide {
     display: none;
 } */
+
+.container {
+  background-color: aqua;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 500px;
+  margin: auto;
+}
+
+.input {
+  min-height: 50px;
+}
+
+.list {
+  width: 100%;
+}
+
+li {
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  font-size: 25px;
+}
