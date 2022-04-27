@@ -1,3 +1,19 @@
+npm init --yes
+instal webpack and webpack cli
+clean-webpack-plugin,
+@babel/core
+@babel/plugin-proposal-class-properties
+@babel/preset-env
+babel-loader
+css-loader 
+html-webpack-plugin
+node-sass
+sass-loader 
+style-loader
+webpack-dev-server 
+    
+
+
 Установка
 Точка входа
 Точка выгрузки
