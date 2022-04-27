@@ -30,3 +30,16 @@ svgImg.src = imgSvg;
 app.append(svgImg);
 
 console.log(sum(2, 3));
+
+// const button = document.querySelector("button");
+
+// const user = {
+//   name: "Bob",
+//   getName() {
+//     return this.name;
+//   },
+// };
+
+// user.getName();
+
+// button.addEventListener('click'. user.getName.bind(user))
