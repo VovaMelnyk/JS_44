@@ -3,3 +3,40 @@
   padding: 10px 10px;
   color: tomato;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+}
+
+@keyframes example {
+  0% {
+    margin-left: -200px;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}
+
+.card {
+  width: max-content;
+  display: flex;
+  padding: 20px;
+  border: 2px solid black;
+  color: tomato;
+  opacity: 0;
+  margin-bottom: 10px;
+  animation-duration: 1s;
+}
+
+.show {
+  opacity: 1;
+  animation-name: example;
+  transition: opacity 2s linear;
+}
