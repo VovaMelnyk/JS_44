@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;AAKA;;;;AAOA","sources":["src/styles.css"],"sourcesContent":["h1 {\n  color: hotpink;\n  font-family: cursive;\n}\n\n.form-box {\n  width: 400px;\n}\n.todo-list {\n  width: 400px;\n}\n\n.container {\n  display: flex;\n}\n"],"names":[],"version":3,"file":"index.4d663569.css.map","sourceRoot":"/__parcel_source_root/"}

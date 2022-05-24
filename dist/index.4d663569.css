@@ -1,0 +1,14 @@
+h1 {
+  color: #ff69b4;
+  font-family: cursive;
+}
+
+.form-box, .todo-list {
+  width: 400px;
+}
+
+.container {
+  display: flex;
+}
+
+/*# sourceMappingURL=index.4d663569.css.map */

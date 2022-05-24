@@ -1,0 +1,15 @@
+h1 {
+  color: hotpink;
+  font-family: cursive;
+}
+
+.form-box {
+  width: 400px;
+}
+.todo-list {
+  width: 400px;
+}
+
+.container {
+  display: flex;
+}
