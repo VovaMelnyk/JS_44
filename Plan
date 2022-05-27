@@ -1,15 +1,37 @@
-0) Connect script to file
-1) How create variables let, const
-2) Console and debuger
-3) Basic types typeof
-4) == ===
-5) Math, Number
-6) Template string
-7) Convert to boolean, Number. String
-8) logical operators
+Що таке регулярка
+Для чого вона використовується
+Способи створення
 
-9) if else
-10) Ternar operators
-11) Switch case
-12) Scope
-13) loop
+new Regexp()
+Особливості синтаксису і написання
+Флаги
+i - ігнорує регістр*
+g - глобальний погук а не перший збіг*
+m - багатостроковий пошук*
+Класи
+\d - numbers 0-9*
+\D - not numbers*
+\w - word*
+\W - not word*
+\s - space*
+\S - not space*
+\b - word or symbol with spase around*
+\B - not word*
+[] - набір *
+- діапазон *
+. - будь - який символ*
+^ - в [] це виключення, за межами набору це початок строки*
+() - група символів*
+{} - показник кількості*
+ + - один або більше
+ ? - нуль або один
+ * - нуль або більше
+ $ - кінець строки*
+
+
+https://regexr.com/
+
+
+Методи перевірки з використанням регулярки
+test
+exec
