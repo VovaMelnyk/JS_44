@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./chat.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <section id="wrapper">
+      <header>
+        <h1>HTML5 Chat</h1>
+      </header>
+
+      <article>
+        <form>
+          <textarea rows="8" cols="80" id="message"></textarea>
+          <button type="submit">Send</button>
+        </form>
+
+        <p id="status">Not connected</p>
+
+        <ul id="chat"></ul>
+      </article>
+    </section> -->
+    <section class="msger">
+      <header class="msger-header">
+        <div class="msger-header-title">
+          SimpleChat
+        </div>
+        <button class="btn">Close</button>
+        <div class="msger-header-options">
+          <p id="status">Not connected</p>
+        </div>
+      </header>
+
+      <main class="msger-chat">
+        <!-- <div class="msg right-msg">
+          <div
+            class="msg-img"
+            style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+          ></div>
+
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">User</div>
+              <div class="msg-info-time">12:46</div>
+            </div>
+
+            <div class="msg-text">
+              You can change your name in JS section!
+            </div>
+          </div>
+        </div> -->
+      </main>
+
+      <form class="msger-inputarea">
+        <input
+          type="text"
+          class="msger-input"
+          placeholder="Enter your message..."
+        />
+        <button type="submit" class="msger-send-btn">Send</button>
+      </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./chat.js" type="module"></script>
+  </body>
+</html>
